@@ -2,7 +2,9 @@ import axios from 'axios'
 import { loginFailure, loginStart, loginSuccess } from '../redux/features/userRedux';
 
 
-const URL="http://localhost:8080/api";
+// const URL="http://localhost:8080/api";
+
+const URL="https://tame-jade-panda-shoe.cyclic.cloud/api/"
 
 export const register=async(data)=>{
     try{
