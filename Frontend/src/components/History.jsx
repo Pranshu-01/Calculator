@@ -66,10 +66,15 @@ const AlertBox=styled(Box)(({theme})=>({
 
 const AlertText=styled(Box)``
 
-const Text=styled(Box)`
-    font-size: 14px;
-    color: #111111;
-`
+const Text=styled(Box)(({theme})=>({
+    fontSize: "14px",
+    color: "#111111",
+    [theme.breakpoints.down('md')]:{
+        fontSize:"10px"
+    }
+}))
+    
+
 
 const History = ({setInputValue,setName}) => {
 
@@ -95,9 +100,9 @@ const History = ({setInputValue,setName}) => {
                 <Wrapper>
 
                 {!user && (<AlertBox sx={{ width: '100%' }}>
-                    <Collapse in={open}>
+                    <Collapse in={open} >
                         <Alert
-                        style={{borderRadius:"4px"}}
+                        style={{borderRadius:"4px",background:"#caf0f847"}}
                         icon={false}
                         action={
                             <IconButton
@@ -188,6 +193,19 @@ const History = ({setInputValue,setName}) => {
                         history.calculations.map((item)=>{
                             let lastChar=item.inputValue.charAt(item.inputValue.length-1);
                             // console.log(lastChar)
+                            let x=0;
+                            let negative="";
+                            while(item.inputValue.charAt(x)==='0'){
+                                x++;
+                            }
+                            if(item.inputValue.charAt(x)==='/' || item.inputValue.charAt(x)==='*' || item.inputValue.charAt(x)==='+'){
+                                x++;
+                            }
+                            else if(item.inputValue.charAt(x)==="-"){
+                                negative="-";
+                                x++;
+                            }
+                            
                             return(
                                 <>
                                     <Tr style={{fontSize:"10px",backgroundColor:"lightblue",color:"#000"}}>
@@ -198,7 +216,7 @@ const History = ({setInputValue,setName}) => {
                                         {
                                         (lastChar==='.' || lastChar==='/' || lastChar==='*' || lastChar==='-' || lastChar==='+') ? <Td>Invalid Operation</Td>  
                                         : 
-                                        item.inputValue.charAt(0)==="0" ? <Td>{eval(item.inputValue.slice(1))}</Td> : <Td>{eval(item.inputValue)}</Td>
+                                        item.inputValue.charAt(0)==="0" ? <Td>{negative + eval(item.inputValue.slice(x))}</Td> : <Td>{eval(item.inputValue)}</Td>
                                         }
 
                                         <Td style={{cursor:"pointer"}}><RestartAlt style={{fontSize:"10px"}} onClick={()=>handleRecalculate(item)}/></Td>

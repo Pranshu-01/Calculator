@@ -42,15 +42,15 @@ const DrawerButtons = () => {
         <Container>
             <Wrapper>
             <RightWrapper>
-                        <Link to="/login">
+                        <Link to="/login" style={{textDecoration:"none",color:"inherit"}}>
                             {!user && <RightButton size='medium' disableRipple variant='outlined'>Sign in</RightButton>}
                         </Link>
 
-                        <Link to="/register">
+                        <Link to="/register" style={{textDecoration:"none",color:"inherit"}}>
                             {!user && <RightButton size='medium' style={{marginTop:"10px"}} disableRipple disableElevation variant='contained'>Register</RightButton>}
                         </Link>
 
-                        <Link onClick={()=>{dispatch(logout());dispatch(logoutUser())}}>
+                        <Link onClick={()=>{dispatch(logout());dispatch(logoutUser())}} style={{textDecoration:"none",color:"inherit"}}>
                             {user && <RightButton size='medium' disableRipple disableElevation variant='contained'>Logout</RightButton>}
                         </Link>
                 </RightWrapper>
