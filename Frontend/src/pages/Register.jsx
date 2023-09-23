@@ -11,7 +11,7 @@ const Container=styled(Box)`
 `
 
 const Wrapper=styled(Box)`
-    margin: 60px 20px;
+    margin: 60px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
