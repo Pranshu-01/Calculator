@@ -142,20 +142,17 @@ const History = ({setInputValue,setName}) => {
                     
                     {
                         history.calculations.map((item)=>{
+
+
+                            try{
+                                eval(item.inputValue);
+                            }
+                            catch(err){
+                                console.log('Invalid Operation');
+                            }
+
                             let lastChar=item.inputValue.charAt(item.inputValue.length-1);
-                            // console.log(lastChar)
-                            let x=0;
-                            let negative="";
-                            while(item.inputValue.charAt(x)==='0'){
-                                x++;
-                            }
-                            if(item.inputValue.charAt(x)==='/' || item.inputValue.charAt(x)==='*' || item.inputValue.charAt(x)==='+'){
-                                x++;
-                            }
-                            else if(item.inputValue.charAt(x)==="-"){
-                                negative="-";
-                                x++;
-                            }
+
                             return(
                                 <>
                                     <Tr style={{fontSize:"17px",backgroundColor:"lightblue",color:"#000"}}>
@@ -163,12 +160,10 @@ const History = ({setInputValue,setName}) => {
                                         <Td>{item.inputValue}</Td>
                                         {/* {item.inputValue.charAt(0)==="0" ? <Td>{eval(item.inputValue.slice(1))}</Td> : <Td>{eval(item.inputValue)}</Td>} */}
                                         
-
-                                       
                                         {
                                         (lastChar==='.' || lastChar==='/' || lastChar==='*' || lastChar==='-' || lastChar==='+') ? <Td>Invalid Operation</Td>  
                                         : 
-                                        item.inputValue.charAt(0)==="0" ? <Td>{negative + eval(item.inputValue.slice(x))}</Td> : <Td>{eval(item.inputValue)}</Td>
+                                        <Td>{eval(item.inputValue)}</Td>
                                         }
 
                                         <Td style={{cursor:"pointer"}}><RestartAlt onClick={()=>handleRecalculate(item)}/></Td>
@@ -193,19 +188,8 @@ const History = ({setInputValue,setName}) => {
                         history.calculations.map((item)=>{
                             let lastChar=item.inputValue.charAt(item.inputValue.length-1);
                             // console.log(lastChar)
-                            let x=0;
-                            let negative="";
-                            while(item.inputValue.charAt(x)==='0'){
-                                x++;
-                            }
-                            if(item.inputValue.charAt(x)==='/' || item.inputValue.charAt(x)==='*' || item.inputValue.charAt(x)==='+'){
-                                x++;
-                            }
-                            else if(item.inputValue.charAt(x)==="-"){
-                                negative="-";
-                                x++;
-                            }
                             
+
                             return(
                                 <>
                                     <Tr style={{fontSize:"10px",backgroundColor:"lightblue",color:"#000"}}>
@@ -216,7 +200,7 @@ const History = ({setInputValue,setName}) => {
                                         {
                                         (lastChar==='.' || lastChar==='/' || lastChar==='*' || lastChar==='-' || lastChar==='+') ? <Td>Invalid Operation</Td>  
                                         : 
-                                        item.inputValue.charAt(0)==="0" ? <Td>{negative + eval(item.inputValue.slice(x))}</Td> : <Td>{eval(item.inputValue)}</Td>
+                                        <Td>{eval(item.inputValue)}</Td>
                                         }
 
                                         <Td style={{cursor:"pointer"}}><RestartAlt style={{fontSize:"10px"}} onClick={()=>handleRecalculate(item)}/></Td>

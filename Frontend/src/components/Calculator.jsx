@@ -141,41 +141,50 @@ const Calculator = () => {
         if(inputValue==="Invalid Operation"){
             setInputValue(e.target.value);
         }
+        
+        else if(inputValue.toString().charAt(0)==="0"){
+            setInputValue(e.target.value);
+        }
+        else if((inputValue.toString().charAt(0)==="/" || inputValue.toString().charAt(0)==="*" || inputValue.toString().charAt(0)==="+" || inputValue.toString().charAt(0)==="-") && inputValue.toString().charAt(1)==="0"){
+            setInputValue(inputValue.slice(0,1)+e.target.value);
+        }
+        else if((inputValue.toString().charAt(inputValue.length-1)==="/" || inputValue.toString().charAt(inputValue.length-1)==="*" || inputValue.toString().charAt(inputValue.length-1)==="+" || inputValue.toString().charAt(inputValue.length-1)==="-" || inputValue.toString().charAt(inputValue.length-1)===".")){
+            if(e.target.value==="1" || e.target.value==="2" || e.target.value==="3" || e.target.value==="4" || e.target.value==="5" || e.target.value==="6" || e.target.value==="7" || e.target.value==="8" || e.target.value==="9" || e.target.value==="0" ){
+                setInputValue(inputValue + e.target.value);
+            }
+            else if(e.target.value==="00"){
+                setInputValue(inputValue + e.target.value.slice(0,-1));
+            }
+            else{
+                setInputValue(inputValue.slice(0,-1)+e.target.value);
+            }
+        }
+        else if(inputValue.toString().charAt(inputValue.length-1)==="0" && (inputValue.toString().charAt(inputValue.length-2)==="/" || inputValue.toString().charAt(inputValue.length-2)==="*" || inputValue.toString().charAt(inputValue.length-2)==="+" || inputValue.toString().charAt(inputValue.length-2)==="-")){
+            if(e.target.value==="0" || e.target.value==="00"){
+
+            }
+            else if(e.target.value==="*" || e.target.value==="/" || e.target.value==="+" || e.target.value==="-" || e.target.value==="."){
+                setInputValue(inputValue+e.target.value);
+            }
+            else{
+                setInputValue(inputValue.slice(0,-1) + e.target.value);
+            }
+        }
         else{
             setInputValue(inputValue + e.target.value);
         }
     }
 
 
-    let negative="";
 
     const handleResult=async()=>{
-        if(inputValue===""){
+       
+        
+        if(inputValue==="" || inputValue==="0" || inputValue==="/" || inputValue==="*" || inputValue==="+" || inputValue==="-" || inputValue==="."){
 
         }
-        else if(inputValue.charAt(0)==="0"){
-            let x=0;
-            while(inputValue.charAt(x)==="0"){
-                x++;
-            }
-            try{
-                let id=uniqid();
-                dispatch(addCalculation({id,name,inputValue}));
-                if(inputValue.charAt(x)==='/' || inputValue.charAt(x)==='*' || inputValue.charAt(x)==='+'){
-                    x++;
-                }
-                else if(inputValue.charAt(x)==='-'){
-                    negative="-";
-                    x++;
-                }
-                setInputValue(negative + eval(inputValue.slice(x)));
-                negative="";
-                setName('');
-            }
-            catch(e){
-                setInputValue('Invalid Operation');
-                setName('');
-            }
+        else if(inputValue==="00"){
+            setInputValue(inputValue.slice(0,-1));
         }
         else{
         try{
@@ -196,7 +205,7 @@ const Calculator = () => {
 
         }
         else{
-            setInputValue(inputValue.slice(0,-1));
+            setInputValue(inputValue.toString().slice(0,-1));
         }
     }
 
