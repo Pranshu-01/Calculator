@@ -160,11 +160,11 @@ const History = ({setInputValue,setName}) => {
                                         <Td>{item.inputValue}</Td>
                                         {/* {item.inputValue.charAt(0)==="0" ? <Td>{eval(item.inputValue.slice(1))}</Td> : <Td>{eval(item.inputValue)}</Td>} */}
                                         
-                                        {/* {
+                                        {
                                         (lastChar==='.' || lastChar==='/' || lastChar==='*' || lastChar==='-' || lastChar==='+') ? <Td>Invalid Operation</Td>  
                                         : 
                                         <Td>{eval(item.inputValue)}</Td>
-                                        } */}
+                                        }
 
                                         <Td style={{cursor:"pointer"}}><RestartAlt onClick={()=>handleRecalculate(item)}/></Td>
                                         <Td style={{cursor:"pointer"}}><Delete onClick={()=>dispatch(deleteCalculation(item))}/></Td>
