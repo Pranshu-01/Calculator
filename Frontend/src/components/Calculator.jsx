@@ -258,7 +258,7 @@ const Calculator = () => {
                         <NameWrapper>
                             <Heading>Calculation Name</Heading>
                             <InputWrapper>
-                                <InputBaseSave value={name} inputProps={{maxLength:"10"}} onChange={(e)=>setName(e.target.value)}/>
+                                <InputBaseSave value={name} inputProps={{maxLength:"15"}} onChange={(e)=>setName(e.target.value)}/>
                                 {/* <SaveButton disableElevation disableRipple variant='contained'>Save</SaveButton> */}
                             </InputWrapper>
                         </NameWrapper>
