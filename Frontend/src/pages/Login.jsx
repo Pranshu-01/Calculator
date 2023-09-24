@@ -91,6 +91,8 @@ const Login = () => {
 
     const {error}=useSelector((state)=>state.user);
 
+    const {isFetching}=useSelector((state)=>state.user);
+
     const [data,setData]=useState({
         email:"",
         password:""
@@ -116,7 +118,7 @@ const Login = () => {
                 <Input type='email' name='email' placeholder='Email' onChange={handleChange} required/>
                 <Input type='password' name='password' placeholder='Password' onChange={handleChange} required/>
                 {error && <Error>Your email or password was entered incorrectly.</Error>}
-                <FormButton>Sign in</FormButton>
+                <FormButton>{isFetching ? "Signing in..." : "Sign in"}</FormButton>
                 <Text style={{fontSize:"15px"}}>Don't have an account? <Link to="/register" style={{marginLeft:"5px",textDecoration:"underline",color:"#0056b3"}}>Register</Link></Text>
             </Form>
         </Wrapper>
