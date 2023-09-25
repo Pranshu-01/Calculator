@@ -142,7 +142,7 @@ const Calculator = () => {
             setInputValue(e.target.value);
         }
         
-        else if(inputValue.toString().charAt(0)==="0"){
+        else if(inputValue.toString().charAt(0)==="0" || (inputValue.toString().charAt(0)==="/" || inputValue.toString().charAt(0)==="*" || inputValue.toString().charAt(0)==="+" || inputValue.toString().charAt(0)==="-" || inputValue.toString().charAt(0)===".")){
             setInputValue(e.target.value);
         }
         else if((inputValue.toString().charAt(0)==="/" || inputValue.toString().charAt(0)==="*" || inputValue.toString().charAt(0)==="+" || inputValue.toString().charAt(0)==="-") && inputValue.toString().charAt(1)==="0"){
